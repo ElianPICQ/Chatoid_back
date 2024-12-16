@@ -31,6 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### BDD Connection ###
-src/main/ressources/application.properties
