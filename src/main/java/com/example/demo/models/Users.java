@@ -49,6 +49,16 @@ public class Users {
     this.id_role = id_role;
   }
 
+  public Users(int id_user, String email, String firstname, String lastname, String phone, String job, String profile_picture) {
+    this.id_user = id_user;
+    this.email = email;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.phone = phone;
+    this.job = job;
+    this.profile_picture = profile_picture;
+  }
+
   public int getId_user() {
       return id_user;
   }

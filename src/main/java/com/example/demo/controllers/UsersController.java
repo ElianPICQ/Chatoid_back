@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,11 @@ public class UsersController {
   @Autowired
   private UsersRepository repository;
 
-  // Get all Users
-  @GetMapping("/users")
-  public List<Users> index(){
-      return repository.findAll();
+  // Get all Users except connected
+  @GetMapping("/{id}/rechercher")
+  public List<Users> findAllOtherUsers(@PathVariable String id) {
+    int userId = Integer.parseInt(id);
+    return repository.findAllOtherUsers(userId);
   }
 
   // User connection
@@ -32,5 +34,14 @@ public class UsersController {
     String email = body.get("email");
     String password = body.get("password");
     return repository.findByEmailAndPassword(email, password);
+  }
+
+  // Get user infos
+  @PostMapping("/profil")
+  public Users getUser(@RequestBody Map<String, String> body){
+    String idUserString = body.get("id_user");
+    int idUser = Integer.parseInt(idUserString);
+
+    return repository.findUserById(idUser);
   }
 }
