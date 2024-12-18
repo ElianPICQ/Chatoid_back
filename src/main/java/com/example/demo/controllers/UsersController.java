@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,5 +44,19 @@ public class UsersController {
     int idUser = Integer.parseInt(idUserString);
 
     return repository.findUserById(idUser);
+  }
+
+  // Update user infos
+  @PutMapping("/profil/update")
+  public Users updateUser(@RequestBody Map<String, String> body){
+    String idUserString = body.get("id_user");
+    int idUser = Integer.parseInt(idUserString);
+
+    Users user = repository.findById(idUser).get();
+
+    user.setPhone(body.get("phone"));
+    user.setJob(body.get("job"));
+
+    return repository.save(user);
   }
 }

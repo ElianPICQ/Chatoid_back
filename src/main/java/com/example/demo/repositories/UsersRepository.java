@@ -23,4 +23,6 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
 
   @Query(value = "SELECT * FROM Users WHERE id_user = ?1", nativeQuery = true)
   Users findUserById(int userId);
+
+//  void  updateUser(int userId, String phone, String job);
 }
