@@ -22,19 +22,19 @@ public class UsersController {
   @Autowired
   private UsersRepository repository;
 
-  // Get all Users except connected
-  @GetMapping("/{id}/rechercher")
-  public List<Users> findAllOtherUsers(@PathVariable String id) {
-    int userId = Integer.parseInt(id);
-    return repository.findAllOtherUsers(userId);
-  }
-
   // User connection
   @PostMapping("/connexion")
   public Users search(@RequestBody Map<String, String> body){
     String email = body.get("email");
     String password = body.get("password");
     return repository.findByEmailAndPassword(email, password);
+  }
+
+  // Get all Users except connected
+  @GetMapping("/{id}/rechercher")
+  public List<Users> findAllOtherUsers(@PathVariable String id) {
+    int userId = Integer.parseInt(id);
+    return repository.findAllOtherUsers(userId);
   }
 
   // Get user infos

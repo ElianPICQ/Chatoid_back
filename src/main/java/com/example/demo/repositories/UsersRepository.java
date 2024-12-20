@@ -24,5 +24,16 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
   @Query(value = "SELECT * FROM Users WHERE id_user = ?1", nativeQuery = true)
   Users findUserById(int userId);
 
+  
+  // Gets the user i'm talking to
+  // Needs the conversation id and connected user id
+  @Query(value="SELECT u.* " +
+        "FROM Users u " +
+        "JOIN Participate p ON u.id_user = p.id_user " +
+        "JOIN  Conversations c ON p.id_conversation = c.id_conversation " +
+        "WHERE  c.id_conversation = 2 " +
+        "AND u.id_user <> 2;", nativeQuery = true)
+  Users getOtherUser(int userId, int conversationId);
+
 //  void  updateUser(int userId, String phone, String job);
 }
