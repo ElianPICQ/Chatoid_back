@@ -49,7 +49,7 @@ public class ConversationsController {
       Users otherUser = usersRepository.getOtherUser(userId, maConversation.getId_conversation());
       
       if (lastMessage != null && otherUser != null) {
-        mesConversationCards.add(new ConversationCard(lastMessage.getDateCreated(), lastMessage.getMessage(), otherUser.getFirstname()));
+        mesConversationCards.add(new ConversationCard(maConversation.getId_conversation(), lastMessage.getDateCreated(), lastMessage.getMessage(), otherUser.getFirstname()));
       }
     }
 

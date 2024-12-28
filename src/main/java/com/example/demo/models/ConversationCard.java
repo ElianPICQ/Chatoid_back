@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class ConversationCard {
 
+    private int id;
   private String title;
   private String message;
   private LocalDateTime date_created;
@@ -11,10 +12,19 @@ public class ConversationCard {
   public ConversationCard() {
   }
 
-  public ConversationCard(LocalDateTime date_created, String message, String title) {
+  public ConversationCard(int id, LocalDateTime date_created, String message, String title) {
+    this.id = id;
       this.date_created = date_created;
       this.message = message;
       this.title = title;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getTitle() {
